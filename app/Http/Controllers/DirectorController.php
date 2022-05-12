@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GenreRequest;
 use App\Models\Genre;
+use App\Models\Director;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\DirectorRequest;
 
-class GenreController extends Controller
+class DirectorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,11 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::all();
-        return view('genres.index', compact('genres'));
+        $directors = DB::select('select d.*, g.*
+                                from DIRECTORS d, GENRE g
+                                where d.genre_id = g.genre_id');
+        // dd($directors);
+        return view('directors.index', compact('directors'));
     }
 
     /**
@@ -26,7 +31,8 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('genres.create');
+        $genres = Genre::all();
+        return view('directors.create', compact('genres'));
     }
 
     /**
@@ -35,12 +41,12 @@ class GenreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenreRequest $request)
+    public function store(DirectorRequest $request)
     {
-        if (!Genre::create($request->validated()))
+        if (!Director::create($request->validated()))
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Genre stored'))->with(['color' => 'success']);
+        return back()->withStatus(__('Director stored'))->with(['color' => 'success']);
     }
 
     /**
@@ -62,7 +68,11 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        return view('genres.edit', ['genre' => Genre::where('genre_id', $id)->first()]);
+        $genres = Genre::all();
+        $director = DB::select('select d.*, g.*
+                                from DIRECTORS d, GENRE g
+                                where d.genre_id = g.genre_id and d.directors_id =' . $id);
+        return view('directors.edit', compact('genres', 'director'));
     }
 
     /**
@@ -72,12 +82,12 @@ class GenreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GenreRequest $request, $id)
+    public function update(DirectorRequest $request, $id)
     {
-        if (!Genre::where('genre_id', $id)->update($request->validated()))
+        if (!Director::where('directors_id', $id)->update($request->validated()))
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Genre edited'))->with(['color' => 'success']);
+        return back()->withStatus(__('Director edited'))->with(['color' => 'success']);
     }
 
     /**
@@ -88,9 +98,9 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        if (!Genre::where('genre_id', $id)->delete())
+        if (!Director::where('directors_id', $id)->delete())
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Genre deleted'))->with(['color' => 'success']);
+        return back()->withStatus(__('Director deleted'))->with(['color' => 'success']);
     }
 }

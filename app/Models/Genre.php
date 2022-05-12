@@ -12,4 +12,9 @@ class Genre extends Model
     protected $fillable = ['genre_id', 'genre_name'];
     public $timestamps = false;
     protected $primaryKey = 'genre_id';
+
+    // public function directors()
+    // // {
+    // //     $this->belongsTo(Director::class);
+    // // }
 }

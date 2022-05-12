@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white"
+<div class="sidebar" data-color="azure" data-background-color="white"
     data-image="{{ asset('material') }}/img/sidebar-1.jpg">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -7,24 +7,30 @@
   -->
     <div class="logo">
         <a href="https://creative-tim.com/" class="simple-text logo-normal">
-            {{ __('Creative Tim') }}
+            {{ __('Movie Industry') }}
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('home') }}">
-                    <i class="material-icons">dashboard</i>
-                    <p>{{ __('Dashboard') }}</p>
+                    <i class="material-icons">movie</i>
+                    <p>{{ __('Movies') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'genre' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('genre.index') }}">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">category</i>
                     <p>{{ __('Genres') }}</p>
                 </a>
             </li>
-            <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'directors' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('directors.index') }}">
+                    <i class="material-icons">attributions</i>
+                    <p>{{ __('Directors') }}</p>
+                </a>
+            </li>
+            {{-- <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
                     <p>{{ __('Laravel Examples') }}
@@ -47,7 +53,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
         </ul>
     </div>
