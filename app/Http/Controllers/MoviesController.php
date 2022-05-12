@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GenreRequest;
+use App\Http\Requests\MoviesRequest;
 use App\Models\Genre;
+use App\Models\Movie;
+use App\Models\Director;
 use Illuminate\Http\Request;
 
-class GenreController extends Controller
+class MoviesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::all();
-        return view('genres.index', compact('genres'));
+        //
     }
 
     /**
@@ -26,7 +27,10 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('genres.create');
+        $genres = Genre::all();
+        $directors = Director::all();
+        $movies = Movie::all();
+        return view('movies.create', compact('genres', 'directors', 'movies'));
     }
 
     /**
@@ -35,12 +39,14 @@ class GenreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenreRequest $request)
+    public function store(MoviesRequest $request)
     {
-        if (!Genre::create($request->validated()))
+
+        if (!Movie::create($request->validated()))
+
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Genre stored'))->with(['color' => 'success']);
+        return back()->withStatus(__('Movie stored'))->with(['color' => 'success']);
     }
 
     /**
@@ -51,7 +57,7 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('movies.view', ['movie' => Movie::where('movie_id', $id)->first()]);
     }
 
     /**
@@ -62,7 +68,7 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        return view('genres.edit', ['genre' => Genre::where('genre_id', $id)->first()]);
+        return view('movies.edit', ['movie' => Movie::where('movie_id', $id)->first()]);
     }
 
     /**
@@ -72,12 +78,12 @@ class GenreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GenreRequest $request, $id)
+    public function update(MoviesRequest $request, $id)
     {
-        if (!Genre::where('genre_id', $id)->update($request->validated()))
+        if (!Movie::where('movie_id', $id)->update($request->validated()))
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Genre edited'))->with(['color' => 'success']);
+        return back()->withStatus(__('Movie edited'))->with(['color' => 'success']);
     }
 
     /**
@@ -88,9 +94,9 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        if (!Genre::where('genre_id', $id)->delete())
+        if (!Movie::where('genre_id', $id)->delete())
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Genre deleted'))->with(['color' => 'success']);
+        return back()->withStatus(__('Movie deleted'))->with(['color' => 'success']);
     }
 }
