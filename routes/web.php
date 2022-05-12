@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('dashboard');
 });
 
 Auth::routes();
@@ -60,3 +61,5 @@ Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\P
 Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 // });
+
+Route::resource('genre', GenreController::class);
