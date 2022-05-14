@@ -6,6 +6,7 @@ use App\Models\Actor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ActorRequest;
+use App\Models\Film;
 use App\Models\Movie;
 
 class ActorController extends Controller
@@ -65,8 +66,9 @@ class ActorController extends Controller
     public function edit($id)
     {
         $movies = Movie::all();
+        $films = DB::select('select m.*, f.* from movie m, films f where m.movie_id = f.movie_id');
         $actor = Actor::where('actor_id', $id)->first();
-        return view('actors.edit', compact('actor', 'movies'));
+        return view('actors.edit', compact('actor', 'movies', 'films'));
     }
 
     /**

@@ -94,7 +94,7 @@
                             {{-- Categories Edit --}}
                             <div class="card ">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">{{ __('Plays') }}</h4>
+                                    <h4 class="card-title">{{ __('Oscars') }}</h4>
                                 </div>
                                 <div class="card-body ">
 
@@ -105,9 +105,9 @@
                                         <div class="col-sm-10">
                                             <div class="form-group{{ $errors->has('movie_id') ? ' has-danger' : '' }}">
                                                 <select name="movie_id" id="" class="form-control">
-                                                    @foreach ($movies as $movie)
-                                                        <option class="form-control" value="{{ $movie->movie_id }}">
-                                                            {{ $movie->m_name }}
+                                                    @foreach ($films as $film)
+                                                        <option class="form-control" value="{{ $film->movie_id }}">
+                                                            {{ $film->m_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -143,7 +143,7 @@
                                             <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
                                                 <input
                                                     class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}"
-                                                    name="year" id="input-role" type="date"
+                                                    name="year" id="input-role" type="number"
                                                     placeholder="{{ __('Year') }}" aria-required="true" />
 
 

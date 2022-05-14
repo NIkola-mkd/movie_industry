@@ -61,7 +61,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="
-                                                                                            submit" rel="tooltip"
+                                                                                                    submit" rel="tooltip"
                                                         class="btn btn-danger">
                                                         <i class="material-icons">close</i>
                                                     </button>
