@@ -18,6 +18,12 @@
                     <p>{{ __('Movies') }}</p>
                 </a>
             </li>
+            <li class="nav-item{{ $activePage == 'actors' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('actors.index') }}">
+                    <i class="material-icons">people</i>
+                    <p>{{ __('Actors') }}</p>
+                </a>
+            </li>
             <li class="nav-item{{ $activePage == 'genre' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('genre.index') }}">
                     <i class="material-icons">category</i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
@@ -71,3 +72,4 @@ Route::resource('directors', DirectorController::class);
 Route::resource('movies', MoviesController::class);
 Route::resource('films', FilmController::class);
 Route::resource('series', SeriesController::class);
+Route::resource('actors', ActorController::class);
