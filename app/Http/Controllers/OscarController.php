@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Actor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Requests\ActorRequest;
-use App\Models\Movie;
 
-class ActorController extends Controller
+class OscarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +13,7 @@ class ActorController extends Controller
      */
     public function index()
     {
-        $actors = Actor::all();
-        return view('actors.index', compact('actors'));
+        //
     }
 
     /**
@@ -28,7 +23,7 @@ class ActorController extends Controller
      */
     public function create()
     {
-        return view('actors.create');
+        //
     }
 
     /**
@@ -37,12 +32,9 @@ class ActorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ActorRequest $request)
+    public function store(Request $request)
     {
-        if (!Actor::create($request->validated()))
-            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
-
-        return back()->withStatus(__('Actor stored'))->with(['color' => 'success']);
+        //
     }
 
     /**
@@ -64,9 +56,7 @@ class ActorController extends Controller
      */
     public function edit($id)
     {
-        $movies = Movie::all();
-        $actor = Actor::where('actor_id', $id)->first();
-        return view('actors.edit', compact('actor', 'movies'));
+        //
     }
 
     /**
@@ -89,9 +79,6 @@ class ActorController extends Controller
      */
     public function destroy($id)
     {
-        if (!Actor::where('actor_id', $id)->delete())
-            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
-
-        return back()->withStatus(__('Actor deleted'))->with(['color' => 'success']);
+        //
     }
 }
