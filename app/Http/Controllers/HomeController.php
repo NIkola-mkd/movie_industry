@@ -26,6 +26,10 @@ class HomeController extends Controller
         $films = DB::select('select *
                             from films f ,movie m, genre g
                             where f.movie_id = m.movie_id and m.genre_id = g.genre_id');
-        return view('dashboard', compact('films'));
+
+        $series = DB::select('select *
+                            from tv_series s ,movie m, genre g
+                            where s.movie_id = m.movie_id and m.genre_id = g.genre_id');
+        return view('dashboard', compact('films', 'series'));
     }
 }

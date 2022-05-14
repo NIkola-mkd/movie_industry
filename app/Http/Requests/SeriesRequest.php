@@ -13,7 +13,7 @@ class SeriesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class SeriesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'movie_id' => 'required|unique:tv_series|unique:films',
+            'tv_chanel' => 'required',
+            'number_ep' => 'required',
+            'number_se' => 'required',
         ];
     }
 }

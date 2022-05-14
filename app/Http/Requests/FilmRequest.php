@@ -24,7 +24,7 @@ class FilmRequest extends FormRequest
     public function rules()
     {
         return [
-            'movie_id' => 'required|unique:films',
+            'movie_id' => 'required|unique:tv_series|unique:films',
             'city_premiere' => 'required',
             'earnings' => 'required',
             '2D' => 'nullable',

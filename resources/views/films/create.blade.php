@@ -12,7 +12,7 @@
 
                         {{-- Categories Edit --}}
                         <div class="card ">
-                            <div class="card-header card-header-primary">
+                            <div class="card-header card-header-warning">
                                 <h4 class="card-title">{{ __('Add new film') }}</h4>
 
                             </div>
@@ -114,7 +114,7 @@
                                 {{-- Footer Submit Save Button --}}
                                 <div class="card-footer justify-content-center">
                                     <button type="submit" class="btn btn-success m-2">{{ __('Save') }}</button>
-                                    <a href="{{ route('home') }}" class="btn btn-primary m-2">{{ __('Back') }}</a>
+                                    <a href="{{ route('home') }}" class="btn btn-warning m-2">{{ __('Back') }}</a>
                                 </div>
 
                             </div>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeriesRequest;
+use App\Models\Movie;
+use App\Models\Serial;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -23,7 +26,8 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        //
+        $movies = Movie::all();
+        return view('series.create', compact('movies'));
     }
 
     /**
@@ -32,9 +36,15 @@ class SeriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeriesRequest $request)
     {
-        //
+
+
+        if (!Serial::create($request->validated()))
+
+            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
+
+        return back()->withStatus(__('Serial stored'))->with(['color' => 'success']);
     }
 
     /**
@@ -79,6 +89,9 @@ class SeriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!Serial::where('movie_id', $id)->delete())
+            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
+
+        return back()->withStatus(__('Serial deleted'))->with(['color' => 'success']);
     }
 }
