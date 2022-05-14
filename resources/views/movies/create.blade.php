@@ -147,7 +147,7 @@
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __(' Sequel of') }}</label>
                                     <div class="col-sm-10">
-                                        <div class="form-group{{ $errors->has('genre') ? ' has-danger' : '' }}">
+                                        <div class="form-group{{ $errors->has('is_sequel') ? ' has-danger' : '' }}">
                                             <select name="is_sequel" id="" class="form-control">
                                                 <option value="null">Select movie</option>
 
@@ -158,23 +158,18 @@
                                                 @endforeach
                                             </select>
 
-                                            @if ($errors->has('name'))
-                                                <span class="error text-danger" id="name-error"
-                                                    for="input-genre">{{ $errors->first('genre') }}</span>
+                                            @if ($errors->has('is_sequel'))
+                                                <span class="error text-danger" id="sequel-error"
+                                                    for="input-sequel">{{ $errors->first('is_sequel') }}</span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
 
-
-
-
-
                                 {{-- Footer Submit Save Button --}}
                                 <div class="card-footer justify-content-center">
                                     <button type="submit" class="btn btn-success m-2">{{ __('Save') }}</button>
-                                    <a href="{{ route('genre.index') }}"
-                                        class="btn btn-primary m-2">{{ __('Back') }}</a>
+                                    <a href="{{ route('home') }}" class="btn btn-primary m-2">{{ __('Back') }}</a>
                                 </div>
 
                             </div>

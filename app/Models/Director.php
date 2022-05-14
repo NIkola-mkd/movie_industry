@@ -9,7 +9,7 @@ class Director extends Model
 {
     use HasFactory;
     use HasFactory;
-    protected $table = "DIRECTORS";
+    protected $table = "directors";
     protected $fillable = ['directors_id', 'd_name', 'd_surname', 'expertise', 'genre_id'];
     public $timestamps = false;
     protected $primaryKey = 'directors_id';

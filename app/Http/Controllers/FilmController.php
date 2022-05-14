@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FilmRequest;
-use App\Http\Requests\MoviesRequest;
-use App\Models\Genre;
-use App\Models\Movie;
-use App\Models\Director;
 use App\Models\Film;
 use Illuminate\Http\Request;
+use App\Http\Requests\FilmRequest;
+use App\Models\Movie;
 
-class MoviesController extends Controller
+class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,10 +26,8 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        $genres = Genre::all();
-        $directors = Director::all();
         $movies = Movie::all();
-        return view('movies.create', compact('genres', 'directors', 'movies'));
+        return view('films.create', compact('movies'));
     }
 
     /**
@@ -41,14 +36,13 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MoviesRequest $request)
+    public function store(FilmRequest $request)
     {
-
-        if (!Movie::create($request->validated()))
+        if (!Film::create($request->validated()))
 
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
-        return back()->withStatus(__('Movie stored'))->with(['color' => 'success']);
+        return back()->withStatus(__('Film stored'))->with(['color' => 'success']);
     }
 
     /**
@@ -59,7 +53,7 @@ class MoviesController extends Controller
      */
     public function show($id)
     {
-        return view('movies.view', ['movie' => Movie::where('movie_id', $id)->first()]);
+        //
     }
 
     /**
@@ -70,7 +64,7 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
-        return view('movies.edit', ['movie' => Movie::where('movie_id', $id)->first()]);
+        //
     }
 
     /**
@@ -80,12 +74,9 @@ class MoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MoviesRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        if (!Movie::where('movie_id', $id)->update($request->validated()))
-            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
-
-        return back()->withStatus(__('Movie edited'))->with(['color' => 'success']);
+        //
     }
 
     /**
@@ -96,7 +87,7 @@ class MoviesController extends Controller
      */
     public function destroy($id)
     {
-        if (!Movie::where('genre_id', $id)->delete())
+        if (!Film::where('movie_id', $id)->delete())
             return back()->withStatus(__('Error'))->with(['color' => 'danger']);
 
         return back()->withStatus(__('Movie deleted'))->with(['color' => 'success']);

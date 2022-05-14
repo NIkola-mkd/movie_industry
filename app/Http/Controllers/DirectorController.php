@@ -18,7 +18,7 @@ class DirectorController extends Controller
     public function index()
     {
         $directors = DB::select('select d.*, g.*
-                                from DIRECTORS d, GENRE g
+                                from directors d, genre g
                                 where d.genre_id = g.genre_id');
         // dd($directors);
         return view('directors.index', compact('directors'));

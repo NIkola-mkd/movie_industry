@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,3 +69,5 @@ Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\
 Route::resource('genre', GenreController::class);
 Route::resource('directors', DirectorController::class);
 Route::resource('movies', MoviesController::class);
+Route::resource('films', FilmController::class);
+Route::resource('series', SeriesController::class);
