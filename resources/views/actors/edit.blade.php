@@ -6,7 +6,18 @@
         <div class="container-fluid">
             <div class="alert alert-default" role="alert">
                 {{ $actor->a_name }} {{ $actor->a_surname }}
-
+                @if (session('status'))
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="alert alert-{{ session('color') }}">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                </button>
+                                <span>{{ session('status') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="row">
                 {{-- Form 1 --}}
@@ -22,19 +33,7 @@
                             <div class="card-body ">
                                 {{-- Season Message --}}
                                 {{-- called from controller >>> return back()->withStatus(__('Profile successfully updated.')); --}}
-                                @if (session('status'))
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="alert alert-{{ session('color') }}">
-                                                <button type="button" class="close" data-dismiss="alert"
-                                                    aria-label="Close">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                                <span>{{ session('status') }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
+
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __(' Movie') }}</label>
@@ -88,10 +87,10 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form method="post" action="{{ route('plays.store') }}" autocomplete="off"
+                        <form method="post" action="{{ route('oscars.store') }}" autocomplete="off"
                             class="form-horizontal">
                             @csrf
-
+                            <input type="text" hidden value="{{ $actor->actor_id }}" name="actor_id">
                             {{-- Categories Edit --}}
                             <div class="card ">
                                 <div class="card-header card-header-primary">
@@ -101,33 +100,56 @@
 
                                     {{-- Season Message --}}
                                     {{-- called from controller >>> return back()->withStatus(__('Profile successfully updated.')); --}}
-                                    @if (session('status'))
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="alert alert-{{ session('color') }}">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
-                                                    <span>{{ session('status') }}</span>
-                                                </div>
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">{{ __(' Movie') }}</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group{{ $errors->has('movie_id') ? ' has-danger' : '' }}">
+                                                <select name="movie_id" id="" class="form-control">
+                                                    @foreach ($movies as $movie)
+                                                        <option class="form-control" value="{{ $movie->movie_id }}">
+                                                            {{ $movie->m_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+
+                                                @if ($errors->has('movie_id'))
+                                                    <span class="error text-danger" id="name-error"
+                                                        for="input-genre">{{ $errors->first('movie_id') }}</span>
+                                                @endif
                                             </div>
                                         </div>
-                                    @endif
-
+                                    </div>
                                     {{-- Name edit --}}
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                                        <label class="col-sm-2 col-form-label">{{ __('Role') }}</label>
                                         <div class="col-sm-10">
-                                            <div class="form-group{{ $errors->has('genre_name') ? ' has-danger' : '' }}">
+                                            <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
                                                 <input
-                                                    class="form-control{{ $errors->has('genre_name') ? ' is-invalid' : '' }}"
-                                                    name="genre_name" id="input-name" type="text"
+                                                    class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}"
+                                                    name="role" id="input-role" type="text"
                                                     placeholder="{{ __('Name') }}" aria-required="true" />
 
-                                                @if ($errors->has('name'))
-                                                    <span class="error text-danger" id="name-error"
-                                                        for="input-name">{{ $errors->first('genre_name') }}</span>
+                                                @if ($errors->has('role'))
+                                                    <span class="error text-danger" id="role-error"
+                                                        for="input-role">{{ $errors->first('role') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">{{ __('Year') }}</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}"
+                                                    name="year" id="input-role" type="date"
+                                                    placeholder="{{ __('Year') }}" aria-required="true" />
+
+
+                                                @if ($errors->has('year'))
+                                                    <span class="error text-danger" id="year-error"
+                                                        for="input-year">{{ $errors->first('year') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -135,7 +157,7 @@
 
                                     {{-- Footer Submit Save Button --}}
                                     <div class="card-footer justify-content-center">
-                                        <button type="submit" class="btn btn-success m-2">{{ __('Edit') }}</button>
+                                        <button type="submit" class="btn btn-success m-2">{{ __('Save') }}</button>
                                         <a href="{{ route('actors.index') }}"
                                             class="btn btn-primary m-2">{{ __('Back') }}</a>
                                     </div>

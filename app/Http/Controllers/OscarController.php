@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OscarRequest;
+use App\Models\Oscar;
 use Illuminate\Http\Request;
 
 class OscarController extends Controller
@@ -32,9 +34,12 @@ class OscarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OscarRequest $request)
     {
-        //
+        if (!Oscar::create($request->validated()))
+            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
+
+        return back()->withStatus(__('Oscar stored'))->with(['color' => 'success']);
     }
 
     /**

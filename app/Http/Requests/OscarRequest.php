@@ -13,7 +13,7 @@ class OscarRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class OscarRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'movie_id' => 'required',
+            'actor_id' => 'required',
+            'role' => 'required',
+            'year' => 'required'
         ];
     }
 }

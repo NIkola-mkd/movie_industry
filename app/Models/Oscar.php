@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Oscar extends Model
 {
     use HasFactory;
+    protected $table = "Oscars";
+    protected $fillable = ['movie_id', 'actor_id', 'role', 'year'];
+    public $timestamps = false;
 }
