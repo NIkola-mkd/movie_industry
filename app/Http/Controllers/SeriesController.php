@@ -63,7 +63,12 @@ class SeriesController extends Controller
                                 INNER JOIN genre g ON g.genre_id = m.genre_id
                                 WHERE f.movie_id =' . $id);
 
-        return view('series.show', compact('films'));
+        $actors = DB::select('SELECT a.a_name, a.a_surname
+FROM actors a
+INNER JOIN Plays P on a.actor_id = P.actor_id
+WHERE P.movie_id = ' . $id);
+
+        return view('series.show', compact('films', 'actors'));
     }
 
     /**

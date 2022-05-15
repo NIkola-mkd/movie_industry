@@ -67,17 +67,26 @@
                                             <p class="col-form-label">{{ $film->number_se }} </p>
                                         </div>
                                     </div>
-
-                                </div>
-                            </div>
                         @endforeach
-
-                        <div class="card-footer ml-auto mr-auto">
-                            <a href="{{ route('home') }}" class="btn btn-warning m-2">{{ __('Back') }}</a>
+                        <hr>
+                        <div class="row mx-0 my-2">
+                            <p class="col-md-2 col-form-label ">{{ __('Actors:') }}</p>
+                            <div class="col-md-10 border-left">
+                                @foreach ($actors as $actor)
+                                    <p class="col-form-label">{{ $actor->a_name }} {{ $actor->a_surname }}</p>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="card-footer ml-auto mr-auto">
+                    <a href="{{ route('home') }}" class="btn btn-warning m-2">{{ __('Back') }}</a>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 @endsection
