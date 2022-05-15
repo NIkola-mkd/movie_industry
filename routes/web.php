@@ -1,5 +1,16 @@
 <?php
 
+use App\Http\Controllers\ActorController;
+use App\Http\Controllers\CriticsController;
+use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\OscarController;
+use App\Http\Controllers\PlayController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,49 +25,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 
-Route::get('table-list', function () {
-	return view('pages.table_list');
-})->name('table');
-
-Route::get('typography', function () {
-	return view('pages.typography');
-})->name('typography');
-
-Route::get('icons', function () {
-	return view('pages.icons');
-})->name('icons');
-
-Route::get('map', function () {
-	return view('pages.map');
-})->name('map');
-
-Route::get('notifications', function () {
-	return view('pages.notifications');
-})->name('notifications');
-
-Route::get('rtl-support', function () {
-	return view('pages.language');
-})->name('language');
-
-Route::get('upgrade', function () {
-	return view('pages.upgrade');
-})->name('upgrade');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-// });
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+
+
+Route::resource('genre', GenreController::class);
+Route::resource('directors', DirectorController::class);
+Route::resource('movies', MoviesController::class);
+Route::resource('films', FilmController::class);
+Route::resource('series', SeriesController::class);
+Route::resource('actors', ActorController::class);
+Route::resource('plays', PlayController::class);
+Route::resource('oscars', OscarController::class);
+Route::resource('ratings', RatingController::class);
+Route::resource('grades', GradeController::class);
+Route::resource('critics', CriticsController::class);
