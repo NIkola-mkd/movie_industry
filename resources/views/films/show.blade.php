@@ -84,6 +84,15 @@
                                 @endforeach
                             </div>
                         </div>
+                        <hr>
+                        <div class="row mx-0 my-2">
+                            <p class="col-md-2 col-form-label ">{{ __('Rating:') }}</p>
+                            <div class="col-md-10 border-left">
+                                @foreach ($rating as $r)
+                                    <p class="col-form-label">{{ $r->average }}</p>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer ml-auto mr-auto">

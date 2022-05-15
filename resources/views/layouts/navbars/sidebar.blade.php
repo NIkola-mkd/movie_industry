@@ -42,6 +42,12 @@
                     <p>{{ __('Oscars') }}</p>
                 </a>
             </li>
+            <li class="nav-item{{ $activePage == 'ratings' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('ratings.index') }}">
+                    <i class="material-icons">trending_up</i>
+                    <p>{{ __('Ratings') }}</p>
+                </a>
+            </li>
             {{-- <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>

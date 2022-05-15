@@ -62,11 +62,18 @@ class FilmController extends Controller
                                 WHERE f.movie_id =' . $id);
 
         $actors = DB::select('SELECT a.a_name, a.a_surname
-FROM actors a
-INNER JOIN Plays P on a.actor_id = P.actor_id
-WHERE P.movie_id = ' . $id);
+                                FROM actors a
+                                INNER JOIN Plays P on a.actor_id = P.actor_id
+                                WHERE P.movie_id = ' . $id);
 
-        return view('films.show', compact('films', 'actors'));
+        $rating = DB::select('SELECT CAST(AVG(c.rate) AS DECIMAL)as average , m.m_name
+                                    FROM Critiques c
+                                    INNER JOIN films f on c.movie_id = f.movie_id
+                                    INNER JOIN movie m on f.movie_id = m.movie_id
+                                    WHERE m.movie_id =' . $id . '
+                                    GROUP BY  m.m_name');
+
+        return view('films.show', compact('films', 'actors', 'rating'));
     }
 
     /**
