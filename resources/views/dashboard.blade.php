@@ -66,6 +66,12 @@
                                                             <td class="text-center">{{ $film->m_name }}</td>
                                                             <td class="text-center">{{ $film->genre_name }}</td>
                                                             <td class="td-actions text-right">
+                                                                <a href="{{ route('films.show', $film->movie_id) }}">
+                                                                    <button type="button" rel="tooltip"
+                                                                        class="btn btn-success">
+                                                                        <i class="material-icons">visibility</i>
+                                                                    </button>
+                                                                </a>
                                                                 <form
                                                                     action="{{ route('films.destroy', $film->movie_id) }}"
                                                                     method="post" style="display: inline;">
@@ -73,7 +79,7 @@
                                                                     @method('DELETE')
                                                                     <button
                                                                         type="
-                                                                                                                            submit"
+                                                                                                                                            submit"
                                                                         rel="tooltip" class="btn btn-danger">
                                                                         <i class="material-icons">close</i>
                                                                     </button>
@@ -118,15 +124,19 @@
                                                             <td class="text-center">{{ $s->m_name }}</td>
                                                             <td class="text-center">{{ $s->genre_name }}</td>
                                                             <td class="td-actions text-right">
+                                                                <a href="{{ route('series.show', $s->movie_id) }}">
+                                                                    <button type="button" rel="tooltip"
+                                                                        class="btn btn-success">
+                                                                        <i class="material-icons">visibility</i>
+                                                                    </button>
+                                                                </a>
                                                                 <form
                                                                     action="{{ route('series.destroy', $s->movie_id) }}"
                                                                     method="post" style="display: inline;">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button
-                                                                        type="
-                                                                                                                            submit"
-                                                                        rel="tooltip" class="btn btn-danger">
+                                                                    <button type="submit" rel="tooltip"
+                                                                        class="btn btn-danger">
                                                                         <i class="material-icons">close</i>
                                                                     </button>
                                                                 </form>

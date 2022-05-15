@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmRequest;
-use App\Models\Movie;
+use Illuminate\Support\Facades\DB;
 
 class FilmController extends Controller
 {
@@ -53,7 +54,14 @@ class FilmController extends Controller
      */
     public function show($id)
     {
-        //
+        $films = DB::select('SELECT m.m_name, d.*, g.*, f.*,f.2D as _2d, f.3D as _3d
+FROM films f
+INNER JOIN movie m ON f.movie_id = m.movie_id
+INNER JOIN directors d ON d.directors_id = m.directors_id
+INNER JOIN genre g ON g.genre_id = m.genre_id
+WHERE f.movie_id =' . $id);
+
+        return view('films.show', compact('films'));
     }
 
     /**

@@ -66,7 +66,10 @@ class ActorController extends Controller
     public function edit($id)
     {
         $movies = Movie::all();
-        $films = DB::select('select m.*, f.* from movie m, films f where m.movie_id = f.movie_id');
+        $films = DB::select('SELECT a. *, m.m_name, p. *
+FROM actors a INNER JOIN Plays p ON p.actor_id = a.actor_id
+                INNER JOIN movie m on m.movie_id = p.movie_id
+WHERE a.actor_id = ' . $id);
         $actor = Actor::where('actor_id', $id)->first();
         return view('actors.edit', compact('actor', 'movies', 'films'));
     }
