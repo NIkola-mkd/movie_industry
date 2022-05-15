@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\CriticsController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
@@ -81,3 +82,4 @@ Route::resource('plays', PlayController::class);
 Route::resource('oscars', OscarController::class);
 Route::resource('ratings', RatingController::class);
 Route::resource('grades', GradeController::class);
+Route::resource('critics', CriticsController::class);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GradeRequest;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,9 +52,12 @@ class GradeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GradeRequest $request)
     {
-        //
+        if (!Grade::create($request->validated()))
+            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
+
+        return back()->withStatus(__('Grade stored'))->with(['color' => 'success']);
     }
 
     /**
