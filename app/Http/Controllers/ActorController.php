@@ -55,10 +55,10 @@ class ActorController extends Controller
     public function show($id)
     {
         $grades = DB::select('SELECT a.a_name,a.a_surname,
-       CAST(AVG(G.acting)  AS DECIMAL ) as acting,
-       CAST(AVG(G.expression )AS DECIMAL) as expression,
-       CAST(AVG(G.naturalness  )AS DECIMAL) as naturalness,
-       CAST(AVG(G.devotion  )AS DECIMAL) as devotion
+      CAST(AVG(G.acting)  AS FLOAT ) as acting,
+       CAST(AVG(G.expression )AS FLOAT) as expression,
+       CAST(AVG(G.naturalness  )AS FLOAT) as naturalness,
+       CAST(AVG(G.devotion  )AS FLOAT) as devotion
                         FROM Grade G
                         INNER JOIN actors a on G.actors_id = a.actor_id
                         WHERE G.actors_id =' . $id . '

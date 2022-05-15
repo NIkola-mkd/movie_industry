@@ -66,7 +66,7 @@ class FilmController extends Controller
                                 INNER JOIN Plays P on a.actor_id = P.actor_id
                                 WHERE P.movie_id = ' . $id);
 
-        $rating = DB::select('SELECT CAST(AVG(c.rate) AS DECIMAL)as average , m.m_name
+        $rating = DB::select('SELECT CAST(AVG(c.rate) AS FLOAT)as average , m.m_name
                                     FROM Critiques c
                                     INNER JOIN films f on c.movie_id = f.movie_id
                                     INNER JOIN movie m on f.movie_id = m.movie_id

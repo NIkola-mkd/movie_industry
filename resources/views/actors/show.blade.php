@@ -43,9 +43,6 @@
                             <a href="{{ route('actors.index') }}" class="btn btn-primary m-2">{{ __('Back') }}</a>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
