@@ -54,7 +54,27 @@ class ActorController extends Controller
      */
     public function show($id)
     {
-        //
+        $grades = DB::select('SELECT a.a_name,a.a_surname,
+       CAST(AVG(G.acting)  AS DECIMAL ) as acting,
+       CAST(AVG(G.expression )AS DECIMAL) as expression,
+       CAST(AVG(G.naturalness  )AS DECIMAL) as naturalness,
+       CAST(AVG(G.devotion  )AS DECIMAL) as devotion
+                        FROM Grade G
+                        INNER JOIN actors a on G.actors_id = a.actor_id
+                        WHERE G.actors_id =' . $id . '
+                        GROUP BY a.actor_id');
+
+        $actor = Actor::where('actor_id', $id)->first();
+
+        $plays = DB::select('SELECT m.m_name, P.paid
+FROM Plays P
+INNER JOIN movie m on P.movie_id = m.movie_id
+INNER JOIN actors a on P.actor_id = a.actor_id
+WHERE P.actor_id = ' . $id);
+
+
+
+        return view('actors.show', compact('grades', 'actor', 'plays'));
     }
 
     /**

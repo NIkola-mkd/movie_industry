@@ -51,6 +51,11 @@
                                             <td class="text-center">{{ $actor->a_surname }}</td>
                                             <td class="text-center">{{ $actor->date_of_birth }}</td>
                                             <td class="td-actions text-right">
+                                                <a href="{{ route('actors.show', $actor->actor_id) }}">
+                                                    <button type="button" rel="tooltip" class="btn btn-info">
+                                                        <i class="material-icons">person</i>
+                                                    </button>
+                                                </a>
                                                 <a href="{{ route('actors.edit', $actor->actor_id) }}">
                                                     <button type="button" rel="tooltip" class="btn btn-success">
                                                         <i class="material-icons">edit</i>
@@ -61,8 +66,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="
-                                                                                                    submit" rel="tooltip"
-                                                        class="btn btn-danger">
+                                                                                                        submit"
+                                                        rel="tooltip" class="btn btn-danger">
                                                         <i class="material-icons">close</i>
                                                     </button>
                                                 </form>
