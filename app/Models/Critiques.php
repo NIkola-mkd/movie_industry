@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Critiques extends Model
 {
     use HasFactory;
+    protected $table = "Critiques";
+    protected $fillable = ['movie_id', 'critics_id', 'rate'];
+    public $timestamps = false;
 }

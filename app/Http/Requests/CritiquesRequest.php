@@ -13,7 +13,7 @@ class CritiquesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CritiquesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'movie_id' => 'required',
+            'critics_id' => 'required',
+            'rate' => 'required|min:0|max:10',
         ];
     }
 }

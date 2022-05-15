@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CritiquesRequest;
+use App\Models\Critiques;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,9 +44,12 @@ ORDER BY average DESC'
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CritiquesRequest $request)
     {
-        //
+        if (!Critiques::create($request->validated()))
+            return back()->withStatus(__('Error'))->with(['color' => 'danger']);
+
+        return back()->withStatus(__('Rate stored'))->with(['color' => 'success']);
     }
 
     /**
