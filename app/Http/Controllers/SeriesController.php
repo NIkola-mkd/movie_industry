@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SeriesRequest;
 use App\Models\Movie;
 use App\Models\Serial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\SeriesRequest;
 
 class SeriesController extends Controller
 {
@@ -55,7 +56,14 @@ class SeriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $films = DB::select('SELECT m.m_name, d.*, g.*, f.*
+                                FROM tv_series f
+                                INNER JOIN movie m ON f.movie_id = m.movie_id
+                                INNER JOIN directors d ON d.directors_id = m.directors_id
+                                INNER JOIN genre g ON g.genre_id = m.genre_id
+                                WHERE f.movie_id =' . $id);
+
+        return view('series.show', compact('films'));
     }
 
     /**

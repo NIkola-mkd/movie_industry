@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'films', 'titlePage' => __('Film Info')])
+@extends('layouts.app', ['activePage' => 'films', 'titlePage' => __('TV Serial Info')])
 
 @section('content')
     <div class="content">
@@ -9,7 +9,7 @@
 
                         {{-- Card Header --}}
                         @foreach ($films as $film)
-                            <div class="card-header card-header-warning">
+                            <div class="card-header card-header-danger">
                                 <h4 class="card-title ">{{ $film->m_name }}</h4>
                             </div>
 
@@ -50,27 +50,21 @@
                                     </div>
                                     <hr>
                                     <div class="row mx-0 my-2">
-                                        <p class="col-md-2 col-form-label ">{{ __('City Premiere:') }}</p>
+                                        <p class="col-md-2 col-form-label ">{{ __('TV Chanel:') }}</p>
                                         <div class="col-md-10 border-left">
-                                            <p class="col-form-label">{{ $film->city_premiere }}</p>
+                                            <p class="col-form-label">{{ $film->tv_chanel }}</p>
                                         </div>
                                     </div>
                                     <div class="row mx-0 my-2">
-                                        <p class="col-md-2 col-form-label ">{{ __('Earnings:') }}</p>
+                                        <p class="col-md-2 col-form-label ">{{ __('Episodes:') }}</p>
                                         <div class="col-md-10 border-left">
-                                            <p class="col-form-label">{{ $film->earnings }} $</p>
+                                            <p class="col-form-label">{{ $film->number_ep }} </p>
                                         </div>
                                     </div>
                                     <div class="row mx-0 my-2">
-                                        <p class="col-md-2 col-form-label ">{{ __('Format:') }}</p>
+                                        <p class="col-md-2 col-form-label ">{{ __('Seasons:') }}</p>
                                         <div class="col-md-10 border-left">
-                                            @if ($film->_2d != null)
-                                                <p class="col-form-label">2D </p>
-                                            @endif
-
-                                            @if ($film->_3d != null)
-                                                <p class="col-form-label">3D </p>
-                                            @endif
+                                            <p class="col-form-label">{{ $film->number_se }} </p>
                                         </div>
                                     </div>
 
