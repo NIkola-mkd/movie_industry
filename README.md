@@ -24,45 +24,11 @@ DB_DATABASE= {your database name}
 DB_USERNAME= {db username}
 DB_PASSWORD= {db password}
 ```
-6. Create a profile on `https://mailtrap.io/`
 
-7. Create new project and inbox
-
-8. In `Integrations` select `Laravel 7+` and copy values
-
-9. Paste values in `.env`
-
-```
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME= {generated username}
-MAIL_PASSWORD= {generated password}
-MAIL_ENCRYPTION=tls
-```
-
-10. In order to create db tables, run this command:
-
-```
-php artisan migrate
-```
-11. Seed data (academies, skills) running this command:
-
-```
-php artisan db:seed
-```
-
-12. Run the following commands to optimize the asset:
-
-```
-npm install
-npm run dev
-```
-
-13. Star application using this command:
+6. Star application using this command:
 
 ```
 php artisan serve
 ```
 
-14. Follow the generated link and start using application
+7. Follow the generated link and start using application
